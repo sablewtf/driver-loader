@@ -54,7 +54,6 @@ namespace driver_loader {
             logger::info("Patched CiValidateImageHeader to: " + tools::toHexString(ZwFlushInstructionCachePtr));
 
             servicemanager::loadTargetDriver();
-            logger::info("Loaded sable-driver");
 
             // Restore
             globals::driver.Write(ciValidateHeaderPtrPhys, &originalCallback, 8);

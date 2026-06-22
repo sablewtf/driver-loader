@@ -36,8 +36,6 @@ namespace driver_loader::servicemanager {
 	};
 
 	void loadDriver(std::string name, LPCSTR path) {
-		bool already_running = false;
-
 		ServiceManager scm{};
 
 		SC_HANDLE service = OpenServiceA(
@@ -58,24 +56,21 @@ namespace driver_loader::servicemanager {
 					path,
 					nullptr, nullptr, nullptr, nullptr, nullptr);
 
-				if (!service) {
+				if (!service)
 					throw std::runtime_error("CreateService failed: " + std::to_string(GetLastError()));
-				}
 			}
-			else
-			{
+			else {
 				throw std::runtime_error("OpenServiceA failed: " + std::to_string(GetLastError()));
 			}
 		}
-		else {
-			already_running = true;
-		}
 
-		if (!StartServiceA(service, 0, nullptr))
-		{
+		bool already_running = false;
+
+		if (!StartServiceA(service, 0, nullptr)) {
 			DWORD error = GetLastError();
-			if (error != ERROR_SERVICE_ALREADY_RUNNING)
-			{
+			if (error == ERROR_SERVICE_ALREADY_RUNNING)
+				already_running = true;
+			else {
 				CloseServiceHandle(service);
 				throw std::runtime_error("StartServiceA failed: " + std::to_string(error));
 			}
@@ -84,12 +79,10 @@ namespace driver_loader::servicemanager {
 		if (service)
 			CloseServiceHandle(service);
 
-		if (already_running) {
-			logger::warn(name + " service already existed and or running.");
-		}
-		else {
-			logger::info("Loaded " + name + " driver");
-		}
+		if (already_running)
+			logger::warn(name + " service was already running.");
+		else
+			logger::info("Loaded " + name + " driver.");
 	}
 
 	void unloadDriver(std::string name) {
