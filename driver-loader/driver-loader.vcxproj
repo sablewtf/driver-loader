@@ -97,6 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -115,6 +116,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -131,6 +133,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -149,13 +152,28 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\driver-loader\driver-loader.cpp" />
+    <ClCompile Include="source\driver-loader\servicemanager\servicemanager.cpp" />
+    <ClCompile Include="source\driver-loader\symboldownloader\symboldownloader.cpp" />
+    <ClCompile Include="source\driver-loader\tools\tools.cpp" />
     <ClCompile Include="source\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\driver-loader\driver-loader.h" />
+    <ClInclude Include="source\driver-loader\globals.h" />
+    <ClInclude Include="source\driver-loader\logger\logger.h" />
+    <ClInclude Include="source\driver-loader\nt.h" />
+    <ClInclude Include="source\driver-loader\pgrhostcontrol\pgrhostcontrol.h" />
+    <ClInclude Include="source\driver-loader\servicemanager\servicemanager.h" />
+    <ClInclude Include="source\driver-loader\symboldownloader\symboldownloader.h" />
+    <ClInclude Include="source\driver-loader\tools\tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
