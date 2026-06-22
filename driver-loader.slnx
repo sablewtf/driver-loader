@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="driver-loader/driver-loader.vcxproj" Id="d3170c5d-5d10-45ee-bac4-5fbba32d8c8b" />
+</Solution>
