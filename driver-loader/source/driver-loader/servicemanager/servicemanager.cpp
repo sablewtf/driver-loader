@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <stdexcept>
+#include <filesystem>
 #include <string>
 
 #include "../logger/logger.h"
@@ -127,7 +128,8 @@ namespace driver_loader::servicemanager {
 	}
 
 	void loadVulnerableDriver() {
-		loadDriver("PGRHostControl", "C:\\Users\\michael\\development\\sablewtf\\driver-loader\\PGRHostControl64.sys");
+		const std::string driverPath = std::filesystem::absolute("PGRHostControl64.sys").string();
+		loadDriver("PGRHostControl", driverPath.c_str());
 	}
 
 	void unloadVulnerableDriver() {
@@ -135,6 +137,7 @@ namespace driver_loader::servicemanager {
 	}
 
 	void loadTargetDriver() {
-		loadDriver("sable-driver", "C:\\Users\\michael\\development\\sablewtf\\driver-loader\\MyDriver1.sys");
+		const std::string driverPath = std::filesystem::absolute("MyDriver1.sys").string();
+		loadDriver("sable", driverPath.c_str());
 	}
 }

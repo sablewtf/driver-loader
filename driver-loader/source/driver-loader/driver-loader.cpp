@@ -40,6 +40,9 @@ namespace driver_loader {
 
             auto [seCiOffset, zwFlushOffset] = *offsets;
 
+            /*uint64_t seCiOffset = 0xf04ca0;
+            uint64_t zwFlushOffset = 0x6a9b00;*/
+
             uint64_t ciValidateHeaderPtrVa = globals::ntoskrnlVirtualAddress + seCiOffset + 0x20;
             uint64_t ciValidateHeaderPtrPhys = tools::VirtualToPhysical(globals::cr3, ciValidateHeaderPtrVa);
 
